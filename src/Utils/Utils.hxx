@@ -178,6 +178,7 @@ namespace Utils
   using istream_type = std::basic_istream<char>;
 }  // namespace Utils
 
+#include "3rd/spdlog/common.h"
 #include "3rd/spdlog/fmt/bundled/std.h"
 #include "3rd/spdlog/fmt/bundled/chrono.h"
 #include "3rd/spdlog/fmt/bundled/color.h"
