@@ -57,10 +57,10 @@
 
 #include <type_traits>
 
-#include "Utils/3rd/Eigen/Core"
-#include "Utils/3rd/Eigen/Dense"
-#include "Utils/3rd/Eigen/QR"
-#include "Utils/3rd/Eigen/Sparse"
+#include <Eigen/Core>
+#include <Eigen/Dense>
+#include <Eigen/QR>
+#include <Eigen/Sparse>
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 

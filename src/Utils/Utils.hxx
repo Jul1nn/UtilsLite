@@ -291,18 +291,6 @@ namespace Utils
 #include "Console.hxx"
 #include "Numbers.hxx"
 
-// order must be preserved
-#include "ThreadPoolBase.hxx"
-#include "ThreadUtils.hxx"
-#include "ThreadPool0.hxx"
-#include "ThreadPool1.hxx"
-#include "ThreadPool2.hxx"
-#include "ThreadPool3.hxx"
-#include "ThreadPool4.hxx"
-#include "ThreadPool5.hxx"
-#include "ThreadPoolEigen.hxx"
-// -----------------------
-
 // ============================================================================
 // Utility Functions
 // ============================================================================
