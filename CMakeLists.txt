@@ -12,19 +12,6 @@ endif()
 
 project( UtilsLite )
 
-# Найти Eigen3
-find_package(Eigen3 REQUIRED NO_MODULE)
-# или если нужен MODULE режим:
-# find_package(Eigen3 REQUIRED)
-
-# Для совместимости со старыми версиями
-if(NOT TARGET Eigen3::Eigen)
-    add_library(Eigen3::Eigen INTERFACE IMPORTED)
-    set_target_properties(Eigen3::Eigen PROPERTIES
-        INTERFACE_INCLUDE_DIRECTORIES "${EIGEN3_INCLUDE_DIRS}"
-    )
-endif()
-
 if (IS_DIRECTORY "${PROJECT_SOURCE_DIR}/cmake_utils")
   set( HOME "${PROJECT_SOURCE_DIR}/cmake_utils/" )
 else()
@@ -186,12 +173,6 @@ list(REMOVE_DUPLICATES INCLUDE_DIRS)
 
 include_directories( ${INCLUDE_DIRS} )
 
-# Добавить Eigen к include директориям
-if(EIGEN3_FOUND)
-    list(APPEND INCLUDE_DIRS ${EIGEN3_INCLUDE_DIRS})
-    message(STATUS "Eigen3 found at: ${EIGEN3_INCLUDE_DIRS}")
-endif()
-
 # Targets - STATIC
 utils_setup_target(
   ${PROJECT_NAME}
@@ -201,27 +182,6 @@ utils_setup_target(
   "${SOURCE_DIR}"
   "${PUBLIC_HEADERS}"
 )
-
-# Для статической библиотеки
-if(TARGET ${UTILS_NAMESPACE}_${PROJECT_NAME}_Static)
-    target_sources(${UTILS_NAMESPACE}_${PROJECT_NAME}_Static 
-        PUBLIC 
-        ${PUBLIC_HEADERS_FULL}
-    )
-    set_target_properties(${UTILS_NAMESPACE}_${PROJECT_NAME}_Static PROPERTIES
-        XCODE_ATTRIBUTE_PUBLIC_HEADERS "${PUBLIC_HEADERS_FULL}"
-        XCODE_ATTRIBUTE_HEADER_SEARCH_PATHS "${SOURCE_DIR}"
-    )
-    # Добавить Eigen
-    if(Eigen3_FOUND)
-        target_link_libraries(${UTILS_NAMESPACE}_${PROJECT_NAME}_Static 
-            INTERFACE Eigen3::Eigen
-        )
-        target_include_directories(${UTILS_NAMESPACE}_${PROJECT_NAME}_Static 
-            SYSTEM PRIVATE ${EIGEN3_INCLUDE_DIRS}
-        )
-    endif()
-endif()
 
 if(TARGET ${UTILS_NAMESPACE}_${PROJECT_NAME}_Static)
     target_sources(${UTILS_NAMESPACE}_${PROJECT_NAME}_Static 
