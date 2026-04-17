@@ -62,16 +62,6 @@
 #include <Eigen/QR>
 #include <Eigen/Sparse>
 
-namespace Eigen
-{
-  template <typename Scalar, int Size>
-  using Vector = Matrix<Scalar, Size, 1>;
-
-  template <typename Scalar>
-  using VectorX = Matrix<Scalar, Dynamic, 1>;
-
-} // namespace Eigen
-
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 namespace fmt
